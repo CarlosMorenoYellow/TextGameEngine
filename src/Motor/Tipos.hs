@@ -1,7 +1,16 @@
+module Motor.Tipos (
+    Direccion(..),
+    Objeto(..),
+    Salida(..),
+    Sala(..),
+    Meta(..),
+    Mundo(..),
+    Estado(..),
+    Comando(..),
+    ErrorMundo(..)
+) where
+
 import Data.Map.Strict(Map)
-import Data.Char (GeneralCategory(Surrogate))
-import GHC.Exts.Heap (ClosureType(SMALL_MUT_ARR_PTRS_DIRTY))
-import Data.String (IsString)
 
 data Direccion = Norte
             | Sur
