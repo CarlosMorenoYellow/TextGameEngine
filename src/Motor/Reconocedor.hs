@@ -1,5 +1,18 @@
-import Data.Char(isSpace)
+module Motor.Reconocedor
+  ( Reconocedor(..)
+  , satisface
+  , caracter
+  , cadena
+  , espacio
+  , linea
+  , separadorBloque
+  , claveValor
+  , opcional
+  , muchos
+  , alMenosUno
+  ) where
 
+import Data.Char(isSpace)
 
 -- Envoltorio ligero para ReadS a
 
@@ -85,4 +98,34 @@ alMenosUno r = do
     pure (x:xs)
 
 -- Seccion de combinadores especificos para el formato de Mundo
+
+-- Lee un par "CLAVE: valor" descartando espacios iniciales y finales.
+claveValor :: Reconocedor (String, String)
+claveValor = Reconocedor $ \input ->
+    let l = dropWhile isSpace input
+        (lineaTexto, resto) = break (== '\n') l
+        restoInput = if null resto then "" else tail resto
+        (clave, valorBruto) = break (== ':') lineaTexto
+    in if not (null valorBruto) && not (null clave)
+        then [((trim clave, trim (tail valorBruto)), restoInput)]
+        else []
+    where
+        trim = reverse . dropWhile isSpace . reverse . dropWhile isSpace
+
+-- Reconoce el separador de bloques formado solo por '-' en su linea
+separadorBloque :: Reconocedor ()
+separadorBloque = Reconocedor $ \input ->
+    let (l, resto) = break (== '\n') (dropWhile isSpace input)
+        restoInput = if null resto then "" else tail resto
+    in if trim l == "-"
+        then [((), restoInput)]
+        else []
+    where trim = reverse . dropWhile isSpace . reverse . dropWhile isSpace
+
+-- Lee el resto de una linea
+linea :: Reconocedor String
+linea = Reconocedor $ \input ->
+    let (l, resto) = break (== '\n') input
+        restoInput = if null resto then "" else tail resto
+    in [(l, restoInput)]
 
