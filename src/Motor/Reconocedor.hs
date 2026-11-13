@@ -104,10 +104,10 @@ claveValor :: Reconocedor (String, String)
 claveValor = Reconocedor $ \input ->
     let l = dropWhile isSpace input
         (lineaTexto, resto) = break (== '\n') l
-        restoInput = if null resto then "" else tail resto
+        restoInput = drop 1 resto
         (clave, valorBruto) = break (== ':') lineaTexto
     in if not (null valorBruto) && not (null clave)
-        then [((trim clave, trim (tail valorBruto)), restoInput)]
+        then [((trim clave, trim (drop 1 valorBruto)), restoInput)]
         else []
     where
         trim = reverse . dropWhile isSpace . reverse . dropWhile isSpace
@@ -115,17 +115,19 @@ claveValor = Reconocedor $ \input ->
 -- Reconoce el separador de bloques formado solo por '-' en su linea
 separadorBloque :: Reconocedor ()
 separadorBloque = Reconocedor $ \input ->
-    let (l, resto) = break (== '\n') (dropWhile isSpace input)
-        restoInput = if null resto then "" else tail resto
-    in if trim l == "-"
+    let (l, resto) = break (== '\n') (dropWhile esEspacioHorizontal input)
+        restoInput = drop 1 resto
+        separador = trim l
+    in if not (null separador) && all (== '-') separador
         then [((), restoInput)]
         else []
-    where trim = reverse . dropWhile isSpace . reverse . dropWhile isSpace
+    where
+        trim = reverse . dropWhile isSpace . reverse . dropWhile isSpace
+        esEspacioHorizontal c = c == ' ' || c == '\t'
 
 -- Lee el resto de una linea
 linea :: Reconocedor String
 linea = Reconocedor $ \input ->
     let (l, resto) = break (== '\n') input
-        restoInput = if null resto then "" else tail resto
+        restoInput = drop 1 resto
     in [(l, restoInput)]
-

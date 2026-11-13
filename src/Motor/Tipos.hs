@@ -7,7 +7,8 @@ module Motor.Tipos (
     Mundo(..),
     Estado(..),
     Comando(..),
-    ErrorMundo(..)
+    ErrorMundo(..),
+    Receta(..)
 ) where
 
 import Data.Map.Strict(Map)
@@ -39,7 +40,7 @@ data Sala = Sala {
 } deriving(Eq,Show,Read)
 
 data Meta = LlegarASala String
-        | LlevarObjectoASala String String
+        | LlevarObjetoASala String String
         deriving (Eq, Show, Read)
 
 data Mundo = Mundo {
@@ -47,7 +48,8 @@ data Mundo = Mundo {
     inicio :: String,
     meta :: Meta,
     salas :: Map String Sala,
-    objectos :: Map String Objeto
+    objectos :: Map String Objeto,
+    receta :: [Receta]
 } deriving (Eq, Show, Read)
 
 data Estado = Estado {
@@ -60,6 +62,7 @@ data Comando = Ir Direccion
             | Mirar 
             | Tomar String
             | Soltar String
+            | Combinar String String
             | Examinar String
             | Inventario
             | Guardar FilePath
@@ -80,4 +83,12 @@ data ErrorMundo = ErrorSintaxis Int String
                 | ErrorMetaOnexistente Meta
                 | ErrorSalaInalcanzable String
                 | ErrorObjectoClaveNoColocado String
-                deriving(Eq, Show) 
+                | ErrorRecetaObjetoInexistente String
+                | ErrorCombinacionInvalida
+                deriving(Eq, Show)
+
+data Receta = Receta
+  { recIng1      :: String
+  , recIng2      :: String
+  , recResultado :: String
+  } deriving (Show, Eq, Read)

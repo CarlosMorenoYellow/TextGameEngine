@@ -1,0 +1,33 @@
+# Errores esperados (acumulativos):
+# - V7: Objeto 'tarjeta' colocado en más de una sala ('oficina' y 'archivo')
+# - V8: META apunta a sala inexistente ('azotea')
+# - V9: Sala 'boveda' es inalcanzable desde 'oficina'
+# - V10: Objeto 'codigo_maestro' requerido en salida no es conseguible (ni en sala ni por receta válida)
+# - Variante 3 (Combinar): RECETA referencia objeto inexistente ('chip_roto')
+
+MUNDO: Errores de Grafo, Meta y Recetas
+INICIO: oficina
+META: llevar tarjeta a azotea
+RECETA: chip_roto + bateria -> codigo_maestro
+-
+OBJETO: tarjeta
+DESC: Tarjeta de acceso.
+-
+OBJETO: bateria
+DESC: Batería de litio.
+-
+OBJETO: codigo_maestro
+DESC: Código generado al combinar componentes.
+-
+SALA: oficina
+DESC: Oficina inicial.
+OBJETO: tarjeta
+OBJETO: bateria
+SALIDA: este -> archivo requiere codigo_maestro
+-
+SALA: archivo
+DESC: Sala de archivos.
+OBJETO: tarjeta
+-
+SALA: boveda
+DESC: Sala aislada sin conexiones entrantes.

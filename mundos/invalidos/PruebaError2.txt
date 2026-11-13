@@ -1,0 +1,29 @@
+# Errores esperados (acumulativos):
+# - V2: ID de sala duplicado ('pasillo') y ID de objeto duplicado ('moneda')
+# - V3: Salida hacia sala inexistente ('sotano')
+# - V4: Salida requiere objeto inexistente ('llave_maestra')
+# - V5: Dirección duplicada ('norte') en 'entrada'
+# - V6: Sala 'entrada' contiene objeto no definido ('fantasma')
+
+MUNDO: Errores de Referencias
+INICIO: entrada
+META: llegar a pasillo
+-
+OBJETO: moneda
+DESC: Una moneda de oro.
+-
+OBJETO: moneda
+DESC: Moneda repetida.
+-
+SALA: entrada
+DESC: Vestíbulo principal.
+OBJETO: moneda
+OBJETO: fantasma
+SALIDA: norte -> pasillo
+SALIDA: norte -> sotano requiere llave_maestra
+-
+SALA: pasillo
+DESC: Primer pasillo.
+-
+SALA: pasillo
+DESC: Pasillo duplicado.

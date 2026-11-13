@@ -1,0 +1,17 @@
+# Errores esperados (V1):
+# - Línea 6: Falta el campo obligatorio 'DESC' en OBJETO
+# - Línea 10: Clave desconocida 'COLOR' en bloque SALA
+# - Línea 12: Formato de SALIDA inválido
+# - Línea 14: Línea sin formato CLAVE: valor
+
+MUNDO: Mundo Roto Sintaxis
+INICIO: entrada
+META: llegar a entrada
+-
+OBJETO: llave
+-
+SALA: entrada
+DESC: Una sala con errores de formato.
+COLOR: azul
+SALIDA: norte ->
+linea suelta sin dos puntos
