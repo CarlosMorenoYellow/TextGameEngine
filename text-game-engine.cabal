@@ -1,0 +1,36 @@
+cabal-version: 2.4
+name: text-game-engine
+version: 0.1.0.0
+build-type: Simple
+
+library
+  hs-source-dirs:      src
+  exposed-modules:
+      Motor.Tipos
+      Motor.Reconocedor
+      Motor.Mundo
+      Motor.Comandos
+      Motor.Nucleo
+      Motor.Persistencia
+  build-depends:
+      base >=4.12 && <5,
+      containers
+  default-language:    Haskell2010
+
+executable aventura
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  build-depends:
+      base >=4.12 && <5,
+      text-game-engine
+  default-language:    Haskell2010
+
+test-suite spec
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:
+      base >=4.12 && <5,
+      containers,
+      text-game-engine
+  default-language:    Haskell2010
