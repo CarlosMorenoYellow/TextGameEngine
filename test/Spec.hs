@@ -51,7 +51,11 @@ estadoEnBiblioteca =
 
 estadoCombinado :: Estado
 estadoCombinado =
-  snd (ejecutar (Combinar "a" "b") (estadoInicial mundoPrueba))
+  let estadoInicial' = estadoInicial mundoPrueba
+      estadoConB = snd (ejecutar (Tomar "b") estadoInicial')
+      estadoConAyB = snd (ejecutar (Tomar "a") estadoConB)
+  in snd (ejecutar (Combinar "a" "b") estadoConAyB)
+\
 
 mundoPrueba :: Mundo
 mundoPrueba =
