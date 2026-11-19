@@ -66,7 +66,9 @@ leerCombinacion argumentos argumentosMinuscula =
     ([], _) -> Nothing
     (_, []) -> Nothing
     (antes, "con":despues)
-      | null despues -> Nothing
+      | null despues
+          || "con" `elem` antes
+          || "con" `elem` despues -> Nothing
       | otherwise ->
           Just (Combinar (unwords antes) (unwords despues))
     _ -> Nothing

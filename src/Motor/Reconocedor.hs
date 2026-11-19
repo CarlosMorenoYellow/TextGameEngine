@@ -118,7 +118,7 @@ separadorBloque = Reconocedor $ \input ->
     let (l, resto) = break (== '\n') (dropWhile esEspacioHorizontal input)
         restoInput = drop 1 resto
         separador = trim l
-    in if not (null separador) && all (== '-') separador
+    in if length separador >= 2 && all (== '-') separador
         then [((), restoInput)]
         else []
     where
