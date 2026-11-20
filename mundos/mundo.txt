@@ -1,0 +1,65 @@
+MUNDO: La llave del profesor
+INICIO: plaza
+META: llevar llave a oficina
+RECETA: piedra + madera -> antorcha
+---
+OBJETO: llave
+DESC: Una llave de hierro.
+---
+OBJETO: piedra
+DESC: Una piedra lisa.
+---
+OBJETO: madera
+DESC: Un trozo de madera seca.
+---
+OBJETO: antorcha
+DESC: Una antorcha recién fabricada.
+---
+OBJETO: manual
+DESC: Un manual con instrucciones para abrir archivos sellados.
+---
+OBJETO: tarjeta
+DESC: Una tarjeta de acceso utilizada por los laboratorios.
+---
+SALA: plaza
+DESC: Una plaza tranquila que guarda varias herramientas útiles.
+OBJETO: llave
+OBJETO: piedra
+OBJETO: madera
+SALIDA: norte -> pasillo requiere llave
+---
+SALA: pasillo
+DESC: Un pasillo iluminado que conduce a varias dependencias.
+OBJETO: manual
+SALIDA: sur -> plaza
+SALIDA: oeste -> biblioteca
+SALIDA: abajo -> sotano
+---
+SALA: biblioteca
+DESC: Una biblioteca pequeña llena de carpetas antiguas.
+OBJETO: tarjeta
+SALIDA: este -> pasillo
+SALIDA: norte -> archivo
+---
+SALA: archivo
+DESC: Un archivo sellado donde se guardan proyectos antiguos.
+SALIDA: sur -> biblioteca
+SALIDA: este -> laboratorio requiere antorcha
+---
+SALA: laboratorio
+DESC: Un laboratorio de sistemas con equipos apagados.
+SALIDA: oeste -> archivo
+SALIDA: sur -> oficina
+---
+SALA: oficina
+DESC: La oficina del profesor. Aquí termina la entrega.
+SALIDA: norte -> laboratorio
+---
+SALA: sotano
+DESC: Un sótano oscuro conectado al pasillo.
+SALIDA: arriba -> pasillo
+SALIDA: este -> terraza
+---
+SALA: terraza
+DESC: Una terraza desde la que se ve el campus.
+SALIDA: oeste -> sotano

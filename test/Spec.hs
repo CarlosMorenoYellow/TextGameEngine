@@ -35,7 +35,7 @@ main = do
         , ("combinar receta", "c" `elem` inventario estadoCombinado)
         ]
 
-  mundoValido <- readFile "mundos/prueba.txt"
+  mundoValido <- readFile "mundos/mundo.txt"
   invalido1 <- readFile "mundos/invalidos/PruebaError1.txt"
   invalido2 <- readFile "mundos/invalidos/PruebaError2.txt"
   invalido3 <- readFile "mundos/invalidos/PruebaError3.txt"

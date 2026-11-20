@@ -1,0 +1,10 @@
+mirar
+tomar piedra
+tomar madera
+combinar piedra con madera
+tomar llave
+ir norte
+ir oeste
+ir norte
+ir este
+ir sur
